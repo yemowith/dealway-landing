@@ -6,23 +6,49 @@
     <title>أثث بيتك من تركيا - DealWay</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Cairo:wght@400;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Cairo:wght@400;700&family=Exo:wght@100&display=swap");
       body {
         font-family: "Cairo", "Roboto", sans-serif;
         overflow-x: hidden;
         direction: rtl;
       }
+
+      .section-bg-black,
+      .section-bg-white {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC");
+        background-repeat: repeat;
+
+        animation: bg-scrolling-reverse 0.92s infinite linear;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        z-index: -1;
+        pointer-events: none;
+      }
       .section-bg-black {
         background-color: #ffffff;
         color: #1a1a1a;
+        position: relative;
+        z-index: 1;
       }
       .section-bg-red {
         background-color: #cc0000;
         color: #ffffff;
+        position: relative;
+        z-index: 1;
       }
       .section-bg-white {
         background-color: #ffffff;
         color: #1a1a1a;
+        position: relative;
+        z-index: 1;
       }
       .cta-button {
         background-color: #cc0000;
@@ -330,6 +356,10 @@
         .shine-effect {
           animation: none;
         }
+        body {
+          animation: none;
+          background-image: none;
+        }
       }
 
       /* Aurora Effect Variables */
@@ -615,7 +645,21 @@
         }
       }
 
+      /* Infinite Background Scrolling Animation */
+      @keyframes bg-scrolling-reverse {
+        100% {
+          background-position: 50px 50px;
+        }
+      }
+
+      @keyframes bg-scrolling {
+        0% {
+          background-position: 50px 50px;
+        }
+      }
+
       .animated-bg-container {
+        position: relative;
         background: linear-gradient(-45deg, #ffffff, #fff5f5, #ffe5e5, #fff0f0);
         background-size: 400% 400%;
         animation: gradientBG 15s ease infinite,
@@ -623,12 +667,30 @@
         border: 1px solid rgba(204, 0, 0, 0.1);
         border-radius: 0.5rem;
         transition: all 0.3s ease;
+        overflow: hidden;
       }
 
-      .animated-bg-container:hover {
-        animation: gradientBG 8s ease infinite,
-          borderGlow 2s ease-in-out infinite;
-        transform: translateY(-2px);
+      .animated-bg-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC");
+        background-repeat: repeat;
+        opacity: 0.1;
+        animation: bg-scrolling-reverse 0.92s infinite linear;
+        pointer-events: none;
+      }
+
+      .animated-bg-container:hover::before {
+        animation: bg-scrolling 0.92s infinite linear;
+      }
+
+      .animated-bg-container > * {
+        position: relative;
+        z-index: 1;
       }
 
       /* Mobile adjustments for animated background */
@@ -636,6 +698,10 @@
         .animated-bg-container {
           animation: none;
           background: #ffffff;
+        }
+        .animated-bg-container::before {
+          animation: none;
+          opacity: 0.05;
         }
         .animated-bg-container:hover {
           animation: none;
@@ -983,9 +1049,14 @@
       </div>
     </section>
 
-    <section class="section-bg-black py-20 text-white overflow-hidden">
+    <section
+      class="section-bg-black py-20 text-white overflow-hidden"
+      style="background: #f4f4f4"
+    >
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 animated-element">
+        <h2
+          class="text-4xl font-bold text-center mb-12 animated-element text-black"
+        >
           مزايا تأثيث بيتك من تركيا
         </h2>
 
@@ -1221,6 +1292,7 @@
     <section
       id="contact"
       class="section-bg-white py-20 text-center overflow-hidden"
+      style="background: #f4f4f4"
     >
       <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold mb-8 animated-element text-black">
