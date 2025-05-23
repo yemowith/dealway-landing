@@ -29,7 +29,7 @@
         background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC");
         background-repeat: repeat;
         opacity: 0.4; /* Adjust this value to control opacity (0.0 to 1.0) */
-        animation: bg-scrolling-reverse 0.92s infinite linear;
+        animation: bg-scrolling-reverse 3s infinite linear;
         z-index: 0;
         pointer-events: none;
       }
@@ -82,6 +82,7 @@
       .arrow-left {
         display: inline-block;
         animation: pulse-arrow-rtl 1.5s ease-in-out infinite;
+        margin-left: 10px;
       }
       .cta-button:hover .arrow-left {
         animation: none;
@@ -90,6 +91,7 @@
       .arrow-right {
         display: inline-block;
         animation: pulse-arrow 1.5s ease-in-out infinite;
+        margin-right: 10px;
       }
       .cta-button:hover .arrow-right {
         animation: none;
@@ -714,6 +716,30 @@
         z-index: 1000;
         position: relative;
       }
+
+      #contact {
+        position: relative;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      #contact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(244, 244, 244, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: -1;
+      }
+
+      #contact .container {
+        position: relative;
+        z-index: 1;
+      }
     </style>
   </head>
   <body class="overflow-x-hidden">
@@ -932,7 +958,7 @@
         </div>
       </section>
 
-      <section class="section-bg-white py-20 overflow-hidden">
+      <section class="section-bg-white py-10 overflow-hidden">
         <div class="container mx-auto px-4">
           <div class="aurora-container">
             <h2 class="aurora-title">
@@ -1231,7 +1257,7 @@
         </div>
       </section>
 
-      <section class="section-bg-white py-20 overflow-hidden">
+      <section class="section-bg-white py-10 overflow-hidden">
         <div class="container mx-auto px-4">
           <h2 class="text-4xl font-bold text-center mb-12 animated-element">
             الأسئلة الشائعة
@@ -1320,7 +1346,7 @@
       <section
         id="contact"
         class="section-bg-white py-20 text-center overflow-hidden"
-        style="background: #f4f4f4"
+        style="background: transparent"
       >
         <div class="container mx-auto px-4">
           <h2 class="text-4xl font-bold mb-8 animated-element text-black">
