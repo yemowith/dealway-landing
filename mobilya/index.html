@@ -54,16 +54,18 @@
       }
       .arrow-left {
         display: inline-block;
-        transition: transform 0.3s ease;
+        animation: pulse-arrow-rtl 1.5s ease-in-out infinite;
       }
       .cta-button:hover .arrow-left {
+        animation: none;
         transform: translateX(-5px);
       }
       .arrow-right {
         display: inline-block;
-        transition: transform 0.3s ease;
+        animation: pulse-arrow 1.5s ease-in-out infinite;
       }
       .cta-button:hover .arrow-right {
+        animation: none;
         transform: translateX(5px);
       }
 
@@ -115,8 +117,530 @@
         text-shadow: 0 0 1em hsla(0, 0%, 91%, 0.2);
       }
 
-      /* Adjust animation for mobile */
+      @keyframes pulse-arrow {
+        0% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateX(8px);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulse-arrow-rtl {
+        0% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateX(-8px);
+          opacity: 0.7;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      /* Fade in and slide up animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scale pulse animation */
+      @keyframes scalePulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Shine effect */
+      @keyframes shine {
+        0% {
+          background-position: -100% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      /* Button hover effect */
+      .cta-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .cta-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .cta-button:hover::after {
+        left: 100%;
+      }
+
+      /* Animated text classes */
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+      }
+
+      .scale-pulse {
+        animation: scalePulse 2s ease-in-out infinite;
+      }
+
+      .shine-effect {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        background-size: 200% 100%;
+        animation: shine 3s infinite linear;
+      }
+
+      /* Apply animations to specific elements */
+      .section-bg-red h2 {
+        animation: scalePulse 3s ease-in-out infinite;
+      }
+
+      .section-bg-red .text-2xl {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .bg-white.text-black p {
+        animation: fadeInUp 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+      }
+
+      .bg-gray-100 h3 {
+        transition: all 0.3s ease;
+      }
+
+      .bg-gray-100 h3:hover {
+        transform: translateX(-5px);
+        color: #cc0000;
+      }
+
+      .bg-gray-800 h4 {
+        transition: all 0.3s ease;
+      }
+
+      .bg-gray-800 h4:hover {
+        transform: translateY(-3px);
+        color: #ff3333;
+      }
+
+      /* Animate list items */
+      .space-y-4 li {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+
+      .space-y-4 li:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .space-y-4 li:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .space-y-4 li:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .space-y-4 li:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .space-y-4 li:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .space-y-4 li:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .space-y-4 li:nth-child(7) {
+        animation-delay: 0.7s;
+      }
+
+      /* Price highlight animation */
+      .text-red-700 {
+        position: relative;
+        display: inline-block;
+      }
+
+      .text-red-700::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #cc0000;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .text-red-700:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* FAQ section animations */
+      .bg-gray-100 {
+        transition: all 0.3s ease;
+      }
+
+      .bg-gray-100:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Mobile adjustments */
       @media (max-width: 768px) {
+        .scale-pulse {
+          animation: none;
+        }
+
+        .shine-effect {
+          animation: none;
+        }
+      }
+
+      /* Aurora Effect Variables */
+      :root {
+        --aurora-bg: #ffffff;
+        --aurora-clr-1: #cc0000;
+        --aurora-clr-2: #ffcc00;
+        --aurora-clr-3: #ff3333;
+        --aurora-clr-4: #ff6666;
+        --aurora-blur: 2rem;
+      }
+
+      /* Aurora Container */
+      .aurora-container {
+        position: relative;
+        overflow: hidden;
+        padding: 2rem 0;
+        margin: 2rem 0;
+      }
+
+      .aurora-title {
+        position: relative;
+        z-index: 2;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0;
+        text-align: center;
+      }
+
+      .aurora {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+
+      .aurora__item {
+        overflow: hidden;
+        position: absolute;
+        width: 60vw;
+        height: 60vw;
+        border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+        filter: blur(var(--aurora-blur));
+        mix-blend-mode: multiply;
+        opacity: 0.5;
+      }
+
+      .aurora__item:nth-of-type(1) {
+        background-color: var(--aurora-clr-1);
+        top: -50%;
+        animation: aurora-border 6s ease-in-out infinite,
+          aurora-1 12s ease-in-out infinite alternate;
+      }
+
+      .aurora__item:nth-of-type(2) {
+        background-color: var(--aurora-clr-2);
+        right: 0;
+        top: 0;
+        animation: aurora-border 6s ease-in-out infinite,
+          aurora-2 12s ease-in-out infinite alternate;
+      }
+
+      .aurora__item:nth-of-type(3) {
+        background-color: var(--aurora-clr-3);
+        left: 0;
+        bottom: 0;
+        animation: aurora-border 6s ease-in-out infinite,
+          aurora-3 8s ease-in-out infinite alternate;
+      }
+
+      .aurora__item:nth-of-type(4) {
+        background-color: var(--aurora-clr-4);
+        right: 0;
+        bottom: -50%;
+        animation: aurora-border 6s ease-in-out infinite,
+          aurora-4 24s ease-in-out infinite alternate;
+      }
+
+      @keyframes aurora-1 {
+        0% {
+          top: 0;
+          right: 0;
+        }
+        50% {
+          top: 100%;
+          right: 75%;
+        }
+        75% {
+          top: 100%;
+          right: 25%;
+        }
+        100% {
+          top: 0;
+          right: 0;
+        }
+      }
+
+      @keyframes aurora-2 {
+        0% {
+          top: -50%;
+          left: 0%;
+        }
+        60% {
+          top: 100%;
+          left: 75%;
+        }
+        85% {
+          top: 100%;
+          left: 25%;
+        }
+        100% {
+          top: -50%;
+          left: 0%;
+        }
+      }
+
+      @keyframes aurora-3 {
+        0% {
+          bottom: 0;
+          left: 0;
+        }
+        40% {
+          bottom: 100%;
+          left: 75%;
+        }
+        65% {
+          bottom: 40%;
+          left: 50%;
+        }
+        100% {
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      @keyframes aurora-4 {
+        0% {
+          bottom: -50%;
+          right: 0;
+        }
+        50% {
+          bottom: 0%;
+          right: 40%;
+        }
+        90% {
+          bottom: 50%;
+          right: 25%;
+        }
+        100% {
+          bottom: -50%;
+          right: 0;
+        }
+      }
+
+      @keyframes aurora-border {
+        0% {
+          border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+        }
+        25% {
+          border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+        }
+        50% {
+          border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+        }
+        75% {
+          border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+        }
+        100% {
+          border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+        }
+      }
+
+      /* Mobile adjustments for aurora */
+      @media (max-width: 768px) {
+        .aurora-container {
+          padding: 1rem 0;
+        }
+        .aurora-title {
+          font-size: 2rem;
+        }
+        .aurora__item {
+          opacity: 0.3;
+        }
+      }
+
+      /* Smile Animation */
+      @keyframes smile {
+        0% {
+          transform: scale(1);
+          text-shadow: 0 0 0 rgba(204, 0, 0, 0);
+        }
+        50% {
+          transform: scale(1.05);
+          text-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+        }
+        100% {
+          transform: scale(1);
+          text-shadow: 0 0 0 rgba(204, 0, 0, 0);
+        }
+      }
+
+      @keyframes smileBorder {
+        0% {
+          border-bottom: 2px solid transparent;
+        }
+        50% {
+          border-bottom: 2px solid #cc0000;
+        }
+        100% {
+          border-bottom: 2px solid transparent;
+        }
+      }
+
+      .smile-title {
+        display: inline-block;
+        position: relative;
+        animation: smile 3s ease-in-out infinite;
+        padding-bottom: 5px;
+        color: #000000;
+      }
+
+      .smile-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        animation: smileBorder 3s ease-in-out infinite;
+      }
+
+      .smile-title:hover {
+        animation: none;
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+      }
+
+      .smile-title:hover::after {
+        animation: none;
+        border-bottom: 2px solid #cc0000;
+      }
+
+      /* Mobile adjustments for smile animation */
+      @media (max-width: 768px) {
+        .smile-title {
+          animation: none;
+        }
+        .smile-title:hover {
+          transform: scale(1.02);
+        }
+      }
+
+      /* Animated Background */
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes borderGlow {
+        0% {
+          box-shadow: 0 0 5px rgba(204, 0, 0, 0.2),
+            0 0 10px rgba(204, 0, 0, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 15px rgba(204, 0, 0, 0.3),
+            0 0 20px rgba(204, 0, 0, 0.2);
+        }
+        100% {
+          box-shadow: 0 0 5px rgba(204, 0, 0, 0.2),
+            0 0 10px rgba(204, 0, 0, 0.1);
+        }
+      }
+
+      .animated-bg-container {
+        background: linear-gradient(-45deg, #ffffff, #fff5f5, #ffe5e5, #fff0f0);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite,
+          borderGlow 3s ease-in-out infinite;
+        border: 1px solid rgba(204, 0, 0, 0.1);
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .animated-bg-container:hover {
+        animation: gradientBG 8s ease infinite,
+          borderGlow 2s ease-in-out infinite;
+        transform: translateY(-2px);
+      }
+
+      /* Mobile adjustments for animated background */
+      @media (max-width: 768px) {
+        .animated-bg-container {
+          animation: none;
+          background: #ffffff;
+        }
+        .animated-bg-container:hover {
+          animation: none;
+          transform: none;
+        }
       }
     </style>
   </head>
@@ -131,8 +655,8 @@
             class="mx-auto h-16 md:h-20"
             viewBox="0 0 1398 321"
             class="your-custom-classes"
-            width="140"
-            height="32"
+            width="190"
+            height="90"
           >
             <defs>
               <linearGradient
@@ -333,9 +857,17 @@
 
     <section class="section-bg-white py-20 overflow-hidden">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 animated-element">
-          الطريق إلى بيت أحلامك
-        </h2>
+        <div class="aurora-container">
+          <h2 class="aurora-title">
+            الطريق إلى بيت أحلامك
+            <div class="aurora">
+              <div class="aurora__item"></div>
+              <div class="aurora__item"></div>
+              <div class="aurora__item"></div>
+              <div class="aurora__item"></div>
+            </div>
+          </h2>
+        </div>
 
         <div class="flex flex-col md:flex-row gap-8 mb-16">
           <div
@@ -465,9 +997,9 @@
         </h2>
 
         <div
-          class="bg-white text-black p-8 rounded-lg shadow-lg mb-12 animated-element"
+          class="animated-bg-container p-8 rounded-lg shadow-lg mb-12 animated-element"
         >
-          <h3 class="text-3xl font-bold mb-4">اسم المنتج ووصفه:</h3>
+          <h3 class="text-3xl font-bold mb-4 smile-title">اسم المنتج ووصفه:</h3>
           <p class="text-xl mb-4">
             - باقة أثاث منزلي متكامل من تركيا - تصنيع وتسليم لباب بيتك
           </p>
